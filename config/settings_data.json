@@ -19,9 +19,7 @@
       },
       "template-blog": {
         "type": "template-blog",
-        "custom_css": [
-          "h2 {font-weight: 600;}"
-        ],
+        "custom_css": [],
         "settings": {
           "number_of_blog_posts": 3
         }
