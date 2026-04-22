@@ -2,7 +2,21 @@
     <div class="text-5xl font-bold my-4">{{ section.settings.title }}</div>
     <div class="my-4">
         <p class="text-base md:text-xl leading-normal">{{ section.settings.subtext_title }}</p>
-        <img src="{{ section.settings.image | image_url: width: 20, height:20, crop: "center" }}"   alt="">
+        {% if  section.settings.image != blank  %}
+            <img 
+                    src="{{ section.settings.image | image_url: width: 40 }}" 
+                    width="120" 
+                    height="120" 
+                    alt="">
+        {% endif %}
+    </div>
+    <div class="my-4">
+        {% if section.settings.button_url == blank %}
+                {% assign shop_url = shop.secure_url %}
+        {% else %}
+                {% assign shop_url = section.settings.button_url %}
+        {% endif %}
+        <a href="{{ shop_url }}" class="px-4 inline py-2 text-base text-white shadow bg-green-600 hover:bg-green-800 font-bold">{{ section.settings.button_label }}</a>
     </div>
 </div>
 
@@ -28,9 +42,19 @@
                 "label": "404 Subtext Title"
             },
             {
+                "type": "text",
+                "id": "button_label",
+                "default": "Back to homepage",
+                "label": "Button Label"
+            },
+            {
+                "type": "url",
+                "id": "button_url",
+                "label": "Button url"
+            },
+            {
                 "type": "image_picker",
                 "id": "image",
-                "default": "",
                 "label": "Here should image be displayed"
             }
         ]
